@@ -3,6 +3,7 @@ from tkinter import filedialog
 from certZoosan import PDFCompleter as PDFCompleter1
 from certOrigen import PDFCompleter as PDFCompleter2
 from shipmentInfo import PDFCompleter as PDFCompleter3
+from newShipping import newShipping
 
 class Aplicacion(tk.Tk):
     def __init__(self):
@@ -37,6 +38,9 @@ class Aplicacion(tk.Tk):
         self.button_completer_3 = tk.Button(self, text="Completa PDF 3", command=self.completa_pdf_3)
         self.button_completer_3.pack()
 
+        self.button_completer_4 = tk.Button(self, text="Completa PDF 4 (newShipping)", command=self.completa_pdf_4)
+        self.button_completer_4.pack()
+
     def buscar_pdf_entrada(self):
         archivo = filedialog.askopenfilename(title="Seleccione el PDF de entrada", filetypes=[("PDF", "*.pdf")])
         self.entry_entrada.delete(0, tk.END)
@@ -64,6 +68,10 @@ class Aplicacion(tk.Tk):
         pdf_salida = self.entry_salida.get()
         pdf_completer = PDFCompleter3(pdf_entrada, pdf_salida)
         pdf_completer.run()
+
+    def completa_pdf_4(self):
+        shipping = newShipping()
+        shipping.completar_formulario()
 
 if __name__ == "__main__":
     aplicacion = Aplicacion()
